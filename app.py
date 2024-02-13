@@ -10,34 +10,40 @@ st.title('Análisis de datos para anuncios de venta de vehículos')
 st.header('Tablas resumen')
 
 #Filtrado de tablas para resumir datos
-cars_new = car_data[car_data['condition'] == 'new'].sort_values(by='price', ascending=False).reset_index(drop=True)[:20]
-cars_excellent = car_data[car_data['condition'] == 'excellent'].sort_values(by='price', ascending=False).reset_index(drop=True)[:20]
-cars_good = car_data[car_data['condition'] == 'good'].sort_values(by='price', ascending=False).reset_index(drop=True)[:20]
+cars_new = car_data[car_data['condition'] == 'new'].sort_values(by='price', ascending=False).reset_index(drop=True)
+cars_excellent = car_data[car_data['condition'] == 'excellent'].sort_values(by='price', ascending=False).reset_index(drop=True)
+cars_good = car_data[car_data['condition'] == 'good'].sort_values(by='price', ascending=False).reset_index(drop=True)
 
-#Creación botones para tablas
-build_table_new = st.button('Los primeros 20 vehículos en estado "nuevo" de mayor precio')
-build_table_excellent = st.button('Los primeros 20 vehículos en estado "excelente" de mayor precio')
-build_table_good = st.button('Los primeros 20 vehículos en estado "bueno" de mayor precio')
+#Creación primera casilla de verificación
+build_table_new = st.checkbox('Los primeros 20 vehículos en estado "nuevo" de mayor precio')
 
 #Representación de tablas
 if build_table_new:
     #Creación de tabla
-    fig = ff.create_table(cars_new)
+    fig = ff.create_table(cars_new.loc[:20,['price', 'model_year', 'model', 'condition', 'fuel', 'transmission']])
+    fig.update_traces(textfont_size=8)
     #Representación de tabla
-    fig.show()
+    st.plotly_chart(fig, use_container_width=True)
+
+#Creación segunda casilla de verificación
+build_table_excellent = st.checkbox('Los primeros 20 vehículos en estado "excelente" de mayor precio')
 
 if build_table_excellent:
     #Creación de tabla
-    fig = ff.create_table(cars_excellent)
+    fig = ff.create_table(cars_excellent.loc[:20,['price', 'model_year', 'model', 'condition', 'fuel', 'transmission']])
+    fig.update_traces(textfont_size=8)
     #Representación de tabla
-    fig.show()
+    st.plotly_chart(fig, use_container_width=True)
+
+#Creación tercera casilla de verificación
+build_table_good = st.checkbox('Los primeros 20 vehículos en estado "bueno" de mayor precio')
 
 if build_table_good:
     #Creación de tabla
-    fig = ff.create_table(cars_good)
+    fig = ff.create_table(cars_good.loc[:20,['price', 'model_year', 'model', 'condition', 'fuel', 'transmission']])
+    fig.update_traces(textfont_size=8)
     #Representación de tabla
-    fig.show()
-
+    st.plotly_chart(fig, use_container_width=True)
 
 
 st.header('Visualización gráfica de datos')
