@@ -1,7 +1,7 @@
 # TT-Project-S5
 TripleTen Data Analyst bootcamp - Sprint 5 project - Creation of a web application
   
-## Versión 2.00:  
+## Versión 2.01:  
 La presente aplicación analiza un dataset de venta de vehículos.  
 Se divide en dos apartados:  
 
